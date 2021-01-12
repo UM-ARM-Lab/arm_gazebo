@@ -44,7 +44,7 @@
                     <imageTopicName>/kinect2/qhd/image_color_rect</imageTopicName>
                     <depthImageTopicName>/kinect2/qhd/image_depth_rect</depthImageTopicName>
                     <pointCloudTopicName>/kinect2/qhd/points</pointCloudTopicName>
-                    <frameName>kinect2/camera_frame_link</frameName>
+                    <frameName>gazebo/kinect2/camera_frame_link</frameName>
                     <pointCloudCutoff>0.5</pointCloudCutoff>
                     <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
                     <distortionK1>0</distortionK1>
