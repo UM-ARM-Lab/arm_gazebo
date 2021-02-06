@@ -28,6 +28,7 @@
 #include <gazebo/common/common.hh>
 
 #include <arm_gazebo_msgs/ExcludeModels.h>
+#include <arc_utilities/ostream_operators.hpp>
 
 #include <arm_gazebo_plugins/gazebo_ros_moveit_planning_scene.h>
 
@@ -109,11 +110,12 @@ void GazeboRosMoveItPlanningScene::Load(physics::ModelPtr _model, sdf::ElementPt
     }
 
     excluded_model_names_.emplace_back(model_name_);
-    if (_sdf->HasElement("excludeModels"))
+    if (_sdf->HasElement("excludedModels"))
     {
-      auto const excluded_models_str = _sdf->GetElement("excludeModels")->Get<std::string>();
+      auto const excluded_models_str = _sdf->GetElement("excludedModels")->Get<std::string>();
       boost::split(excluded_model_names_, excluded_models_str, boost::is_any_of(" ,\n"));
     }
+    ROS_DEBUG_STREAM_THROTTLE_NAMED(1, NAME, "Excluded models " << excluded_model_names_);
   }
 
   // Make sure the ROS node for Gazebo has already been initialized
@@ -138,6 +140,8 @@ void GazeboRosMoveItPlanningScene::Load(physics::ModelPtr _model, sdf::ElementPt
         excluded_model_names_.push_back(name);
       }
     }
+    ROS_DEBUG_STREAM_NAMED(NAME, "Updated excluded models " << excluded_model_names_);
+
     // copies into the response
     res.all_model_names = excluded_model_names_;
     return true;
@@ -215,7 +219,7 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage()
     if (std::find(excluded_model_names_.cbegin(), excluded_model_names_.cend(), model_name) !=
         excluded_model_names_.cend())
     {
-      ROS_DEBUG_STREAM_NAMED(NAME, "Skipping model " << model_name);
+      ROS_DEBUG_STREAM_THROTTLE_NAMED(1, NAME, "Skipping model " << model_name);
       continue;
     }
 
@@ -244,9 +248,9 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage()
       // Create a new collision object representing this link if it's not in the map
       if (found_collision_object == collision_object_map_.end())
       {
-        ROS_DEBUG_STREAM_NAMED(NAME, "Creating collision object for model"
+        ROS_DEBUG_STREAM_NAMED(NAME, "Creating collision object for model "
             << model_name
-            << "model_name " << model_name_
+            << " model_name " << model_name_
             << " n objects = " << collision_object_map_.size());
 
         moveit_msgs::CollisionObject new_object;
@@ -259,7 +263,7 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage()
       } else
       {
         collision_object_map_[id].operation = moveit_msgs::CollisionObject::MOVE;
-        ROS_DEBUG_STREAM_NAMED(NAME, "Moving object: " << id);
+        ROS_DEBUG_STREAM_THROTTLE_NAMED(1, NAME, "Moving object: " << id);
       }
 
       // Get a reference to the object from the map
@@ -496,8 +500,8 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage()
 
           object.primitives.push_back(primitive_msg);
         }
-        ROS_DEBUG("model %s has %zu links", model_name.c_str(), links.size());
-        ROS_DEBUG("model %s has %zu meshes, %zu mesh poses", model_name.c_str(), object.meshes.size(),
+        ROS_DEBUG_THROTTLE_NAMED(1, NAME, "model %s has %zu links", model_name.c_str(), links.size());
+        ROS_DEBUG_THROTTLE_NAMED(1, NAME, "model %s has %zu meshes, %zu mesh poses", model_name.c_str(), object.meshes.size(),
                   object.mesh_poses.size());
       }
     }

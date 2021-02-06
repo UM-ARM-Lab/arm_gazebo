@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(arm_gazebo_plugins)
 
-find_package(catkin REQUIRED COMPONENTS moveit_msgs arm_gazebo_msgs)
+find_package(catkin REQUIRED COMPONENTS moveit_msgs arm_gazebo_msgs arc_utilities)
 find_package(gazebo REQUIRED)
 catkin_package(LIBRARIES CATKIN_DEPENDS moveit_msgs arm_gazebo_msgs)
 
