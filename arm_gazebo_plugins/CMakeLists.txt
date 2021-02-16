@@ -16,4 +16,5 @@ function(gazebo_plugin target_name)
 endfunction()
 
 gazebo_plugin(gazebo_ros_moveit_planning_scene src/gazebo_ros_moveit_planning_scene.cpp)
+gazebo_plugin(arm_gazebo_ros_plugin src/arm_gazebo_ros_plugin.cpp)
 

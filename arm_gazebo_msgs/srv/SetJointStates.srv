@@ -1,0 +1,4 @@
+arm_gazebo_msgs/JointStates joint_states
+---
+bool success
+string status_message
