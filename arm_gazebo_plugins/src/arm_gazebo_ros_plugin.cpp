@@ -104,7 +104,8 @@ class ArmGazeboRosPlugin : public WorldPlugin
     for (auto const &req_link_state: req.link_states)
     {
       auto const link = boost::dynamic_pointer_cast<physics::Link>(world_->EntityByName(req_link_state.link_name));
-      auto const frame = boost::dynamic_pointer_cast<physics::Link>(world_->EntityByName(req_link_state.reference_frame));
+      auto const frame = boost::dynamic_pointer_cast<physics::Link>(
+          world_->EntityByName(req_link_state.reference_frame));
       if (!link)
       {
         ROS_ERROR_NAMED(LOGGER, "Updating LinkState: link [%s] does not exist", req_link_state.link_name.c_str());
@@ -130,8 +131,8 @@ class ArmGazeboRosPlugin : public WorldPlugin
         auto const frame_pose = frame->WorldPose();
         auto const frame_linear_vel = frame->WorldLinearVel();
         auto const frame_angular_vel = frame->WorldAngularVel();
-        auto const frame_pos = frame_pose.Pos();
-        auto const frame_rot = frame_pose.Rot();
+        auto const &frame_pos = frame_pose.Pos();
+        auto const &frame_rot = frame_pose.Rot();
 
         target_pose = target_pose + frame_pose;
 
@@ -217,6 +218,7 @@ class ArmGazeboRosPlugin : public WorldPlugin
         auto const is_paused = world_->IsPaused();
         world_->SetPaused(true);
 
+        ROS_DEBUG_STREAM_NAMED(LOGGER, "Setting State for model " << model->GetName());
         model->SetWorldPose(target_pose);
         model->SetLinearVel(target_pos_dot);
         model->SetAngularVel(target_rot_dot);
