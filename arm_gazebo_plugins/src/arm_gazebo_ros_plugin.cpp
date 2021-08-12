@@ -184,10 +184,10 @@ class ArmGazeboRosPlugin : public WorldPlugin
       auto model = world_->ModelByName(req_model_state.model_name);
       if (!model)
       {
-        ROS_ERROR_NAMED(LOGGER, "Updating ModelState: model [%s] does not exist", req_model_state.model_name.c_str());
+        ROS_WARN_NAMED(LOGGER, "Updating ModelState: model [%s] does not exist", req_model_state.model_name.c_str());
         res.success = false;
         res.status_message = "SetModelState: model does not exist";
-        break;
+        continue;
       } else
       {
         auto const relative_entity = world_->EntityByName(req_model_state.reference_frame);
