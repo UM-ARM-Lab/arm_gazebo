@@ -284,6 +284,7 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage()
         link_pose_msg.orientation.z = link_pose.Rot().Z();
         link_pose_msg.orientation.w = link_pose.Rot().W();
       }
+      object.pose = link_pose_msg;
 
       for (const auto &collision : collisions)
       {
