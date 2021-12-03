@@ -51,7 +51,7 @@ void CollisionMapPlugin::Load(physics::WorldPtr world, sdf::ElementPtr /*sdf*/) 
     return;
   }
 
-  auto get_occupancy = [&](peter_msgs::ComputeOccupancyRequest &req, peter_msgs::ComputeOccupancyResponse &res) {
+  auto get_occupancy = [&](arm_gazebo_msgs::ComputeOccupancyRequest &req, arm_gazebo_msgs::ComputeOccupancyResponse &res) {
     auto const &origin_point =
         compute_occupancy_grid(req.h_rows, req.w_cols, req.c_channels, req.center, req.resolution, req.excluded_models);
 
@@ -83,7 +83,7 @@ void CollisionMapPlugin::Load(physics::WorldPtr world, sdf::ElementPtr /*sdf*/) 
   ros_node_ = std::make_unique<ros::NodeHandle>("collision_map_plugin");
 
   {
-    auto so = ros::AdvertiseServiceOptions::create<peter_msgs::ComputeOccupancy>("/occupancy", get_occupancy,
+    auto so = ros::AdvertiseServiceOptions::create<arm_gazebo_msgs::ComputeOccupancy>("/occupancy", get_occupancy,
                                                                                  ros::VoidConstPtr(), &queue_);
     get_occupancy_service_ = ros_node_->advertiseService(so);
 

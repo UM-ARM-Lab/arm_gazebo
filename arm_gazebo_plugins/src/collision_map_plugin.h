@@ -1,5 +1,5 @@
 #include <geometry_msgs/Point.h>
-#include <peter_msgs/ComputeOccupancy.h>
+#include <arm_gazebo_msgs/ComputeOccupancy.h>
 #include <ros/callback_queue.h>
 #include <ros/ros.h>
 #include <ros/subscribe_options.h>
