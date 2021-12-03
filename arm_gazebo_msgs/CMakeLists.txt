@@ -14,6 +14,7 @@ add_message_files(
 
 add_service_files(
         FILES
+        ComputeOccupancy.srv
         ExcludeModels.srv
         GetJointStates.srv
         SetJointStates.srv
