@@ -6,8 +6,10 @@
     <license>BSD</license>
 
     <buildtool_depend>catkin</buildtool_depend>
-    <depend>moveit_msgs</depend>
-    <depend>arm_gazebo_msgs</depend>
-    <depend>gazebo_ros</depend>
     <depend>arc_utilities</depend>
+    <depend>arm_gazebo_msgs</depend>
+    <depend>cnpy</depend>
+    <depend>gazebo_ros</depend>
+    <depend>moveit_msgs</depend>
+    <depend>sdf_tools</depend>
 </package>

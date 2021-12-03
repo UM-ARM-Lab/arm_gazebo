@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
 project(arm_gazebo_plugins)
 
-find_package(catkin REQUIRED COMPONENTS moveit_msgs arm_gazebo_msgs arc_utilities)
+find_package(catkin REQUIRED COMPONENTS moveit_msgs cnpy arm_gazebo_msgs arc_utilities sdf_tools)
 find_package(gazebo REQUIRED)
-catkin_package(LIBRARIES CATKIN_DEPENDS moveit_msgs arm_gazebo_msgs)
+catkin_package(LIBRARIES CATKIN_DEPENDS moveit_msgs arm_gazebo_msgs cnpy sdf_tools)
 
 function(gazebo_plugin target_name)
     set(sources ${ARGN})
@@ -17,4 +17,4 @@ endfunction()
 
 gazebo_plugin(gazebo_ros_moveit_planning_scene src/gazebo_ros_moveit_planning_scene.cpp)
 gazebo_plugin(arm_gazebo_ros_plugin src/arm_gazebo_ros_plugin.cpp)
-
+gazebo_plugin(collision_map_plugin src/collision_map_plugin.cpp)
