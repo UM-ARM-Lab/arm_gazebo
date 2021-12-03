@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <sdf version='1.7'>
   <model name='fake_wall'>
-    <link name='unit_box::link'>
+    <link name='link'>
       <inertial>
         <mass>1</mass>
         <inertia>
