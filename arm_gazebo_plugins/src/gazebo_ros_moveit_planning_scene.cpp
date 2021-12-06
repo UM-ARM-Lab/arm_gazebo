@@ -260,7 +260,7 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage()
       {
         const ShapePtr shape = collision->GetShape();
 
-        ignition::math::Pose3d collision_pose = collision->InitialRelativePose() + link_pose;
+        ignition::math::Pose3d collision_pose = collision->WorldPose();
         geometry_msgs::Pose collision_pose_msg;
         {
           collision_pose_msg.position.x = collision_pose.Pos().X();
