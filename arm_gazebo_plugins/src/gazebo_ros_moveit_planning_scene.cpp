@@ -256,19 +256,6 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage()
       object.header.stamp = ros::Time::now();
       object.operation = moveit_msgs::CollisionObject::ADD;
 
-      ignition::math::Pose3d link_pose = link->WorldPose();
-      geometry_msgs::Pose link_pose_msg;
-      {
-        link_pose_msg.position.x = link_pose.Pos().X();
-        link_pose_msg.position.y = link_pose.Pos().Y();
-        link_pose_msg.position.z = link_pose.Pos().Z();
-        link_pose_msg.orientation.x = link_pose.Rot().X();
-        link_pose_msg.orientation.y = link_pose.Rot().Y();
-        link_pose_msg.orientation.z = link_pose.Rot().Z();
-        link_pose_msg.orientation.w = link_pose.Rot().W();
-      }
-      object.pose = link_pose_msg;
-
       for (const auto &collision : collisions)
       {
         const ShapePtr shape = collision->GetShape();
