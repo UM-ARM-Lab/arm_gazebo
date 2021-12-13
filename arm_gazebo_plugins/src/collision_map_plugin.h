@@ -1,5 +1,5 @@
-#include <geometry_msgs/Point.h>
 #include <arm_gazebo_msgs/ComputeOccupancy.h>
+#include <geometry_msgs/Point.h>
 #include <ros/callback_queue.h>
 #include <ros/ros.h>
 #include <ros/subscribe_options.h>
@@ -41,6 +41,8 @@ class CollisionMapPlugin : public WorldPlugin {
 
   sdf_tools::CollisionMapGrid grid_;
 
+  std::string frame_id_;
+
   bool debug_ = false;
   bool done_ = false;
   double radius_ = 0.005;
@@ -53,6 +55,7 @@ class CollisionMapPlugin : public WorldPlugin {
   void Load(physics::WorldPtr world, sdf::ElementPtr _sdf) override;
 
  public:
+  CollisionMapPlugin();
   ~CollisionMapPlugin() override;
 
  private:

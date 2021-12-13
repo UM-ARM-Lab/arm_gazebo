@@ -36,7 +36,10 @@ bool matches(std::string s1, std::string s2) {
   return std::regex_search(s1, self_regex);
 }
 
-void CollisionMapPlugin::Load(physics::WorldPtr world, sdf::ElementPtr /*sdf*/) {
+void CollisionMapPlugin::Load(physics::WorldPtr world, sdf::ElementPtr sdf) {
+  if (sdf->HasElement("frame_id")) {
+    frame_id_ = sdf->GetElement("frame_id")->Get<std::string>();
+  }
   world_ = world;
   engine_ = world->Physics();
   engine_->InitForThread();
@@ -51,7 +54,8 @@ void CollisionMapPlugin::Load(physics::WorldPtr world, sdf::ElementPtr /*sdf*/) 
     return;
   }
 
-  auto get_occupancy = [&](arm_gazebo_msgs::ComputeOccupancyRequest &req, arm_gazebo_msgs::ComputeOccupancyResponse &res) {
+  auto get_occupancy = [&](arm_gazebo_msgs::ComputeOccupancyRequest &req,
+                           arm_gazebo_msgs::ComputeOccupancyResponse &res) {
     auto const &origin_point =
         compute_occupancy_grid(req.h_rows, req.w_cols, req.c_channels, req.center, req.resolution, req.excluded_models);
 
@@ -84,7 +88,7 @@ void CollisionMapPlugin::Load(physics::WorldPtr world, sdf::ElementPtr /*sdf*/) 
 
   {
     auto so = ros::AdvertiseServiceOptions::create<arm_gazebo_msgs::ComputeOccupancy>("/occupancy", get_occupancy,
-                                                                                 ros::VoidConstPtr(), &queue_);
+                                                                                      ros::VoidConstPtr(), &queue_);
     get_occupancy_service_ = ros_node_->advertiseService(so);
 
     sphere_marker_pub_ = ros_node_->advertise<visualization_msgs::MarkerArray>("collision_map_grid", 10, false);
@@ -153,7 +157,7 @@ geometry_msgs::Point CollisionMapPlugin::compute_occupancy_grid(int64_t h_rows, 
   origin_transform.translation() =
       Eigen::Vector3d{center.x - x_width / 2.f, center.y - y_height / 2.f, center.z - z_size / 2.f};
 
-  grid_ = sdf_tools::CollisionMapGrid(origin_transform, "/world", resolution, w_cols, h_rows, c_channels, oob_value);
+  grid_ = sdf_tools::CollisionMapGrid(origin_transform, frame_id_, resolution, w_cols, h_rows, c_channels, oob_value);
   ROS_DEBUG_STREAM_NAMED(PLUGIN_NAME, "origin " << origin_transform.translation() << " shape [" << h_rows << ","
                                                 << w_cols << "," << c_channels << "]");
 
@@ -182,7 +186,7 @@ geometry_msgs::Point CollisionMapPlugin::compute_occupancy_grid(int64_t h_rows, 
   marker.scale.z = radius_ * 2;
   marker.pose.orientation.w = 1;
   marker.header.stamp = ros::Time::now();
-  marker.header.frame_id = "world";
+  marker.header.frame_id = frame_id_;
 
   // lock physics engine while creating/testing collision. not sure this is necessary.
   {
