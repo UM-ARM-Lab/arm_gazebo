@@ -41,7 +41,7 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <box>
-            <size>3.10724 0.140567 1.89855</size>
+            <size>0.39 0.18 0.1</size>
           </box>
         </geometry>
         <surface>
