@@ -55,7 +55,6 @@ class CollisionMapPlugin : public WorldPlugin {
   void Load(physics::WorldPtr world, sdf::ElementPtr _sdf) override;
 
  public:
-  CollisionMapPlugin();
   ~CollisionMapPlugin() override;
 
  private:
