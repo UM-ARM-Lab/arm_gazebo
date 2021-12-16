@@ -238,7 +238,7 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage()
 
         moveit_msgs::CollisionObject new_object;
         new_object.id = id;
-        new_object.header.frame_id = "world";
+        new_object.header.frame_id = frame_id_;
         new_object.operation = moveit_msgs::CollisionObject::ADD;
 
         collision_object_map_[id] = new_object;
@@ -254,6 +254,7 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage()
       object.id = id;
       object.header.frame_id = this->frame_id_;
       object.header.stamp = ros::Time::now();
+      object.pose.orientation.w = 1.0;
       object.operation = moveit_msgs::CollisionObject::ADD;
 
       for (const auto &collision : collisions)
