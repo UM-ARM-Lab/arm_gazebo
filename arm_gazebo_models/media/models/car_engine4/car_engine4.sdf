@@ -113,7 +113,7 @@
         </link>
         <link name="top">
             <kinematic>true</kinematic>
-            <pose>0 0 0.28 0 0 0 0</pose>
+            <pose>0 -0.06 0.28 0 0 0 0</pose>
             <visual name="visual">
                 <geometry>
                     <box>
