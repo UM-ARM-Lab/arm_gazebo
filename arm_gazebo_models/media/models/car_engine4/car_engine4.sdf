@@ -113,11 +113,11 @@
         </link>
         <link name="top">
             <kinematic>true</kinematic>
-            <pose>0 -0.06 0.28 0 0 0 0</pose>
+            <pose>0 -0.03 0.28 0 0 0 0</pose>
             <visual name="visual">
                 <geometry>
                     <box>
-                        <size>0.28 0.26 0.13</size>
+                        <size>0.26 0.33 0.13</size>
                     </box>
                 </geometry>
                 <material>
@@ -128,7 +128,7 @@
             <collision name="collision">
                 <geometry>
                     <box>
-                        <size>0.28 0.26 0.13</size>
+                        <size>0.26 0.33 0.13</size>
                     </box>
                 </geometry>
             </collision>
