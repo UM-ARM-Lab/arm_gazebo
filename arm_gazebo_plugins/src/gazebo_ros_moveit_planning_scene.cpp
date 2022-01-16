@@ -320,9 +320,6 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage()
                 break;
             }
           }
-        } else if (shape->HasType(Base::PLANE_SHAPE))
-        {
-          object.plane_poses.push_back(collision_pose_msg);
         } else
         {
           object.primitive_poses.push_back(collision_pose_msg);
@@ -422,18 +419,6 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage()
                 break;
             }
           }
-        } else if (shape->HasType(Base::PLANE_SHAPE))
-        {
-          // Plane
-          boost::shared_ptr<PlaneShape> plane_shape = boost::dynamic_pointer_cast<PlaneShape>(shape);
-          shape_msgs::Plane plane_msg;
-
-          plane_msg.coef[0] = plane_shape->Normal().X();
-          plane_msg.coef[1] = plane_shape->Normal().Y();
-          plane_msg.coef[2] = plane_shape->Normal().Z();
-          plane_msg.coef[3] = 0;  // This should be handled by the position of the collision object
-
-          object.planes.push_back(plane_msg);
         } else
         {
           // Solid primitive

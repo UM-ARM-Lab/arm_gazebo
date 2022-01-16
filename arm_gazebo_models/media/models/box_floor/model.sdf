@@ -1,0 +1,35 @@
+<?xml version='1.0'?>
+<sdf version='1.7'>
+  <model name='box_floor'>
+    <link name='link'>
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.166667</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.166667</iyy>
+          <iyz>0</iyz>
+          <izz>0.166667</izz>
+        </inertia>
+        <pose>0 0 0 0 -0 0</pose>
+      </inertial>
+      <visual name='visual'>
+        <geometry>
+          <box>
+            <size>5 5 0.01</size>
+          </box>
+        </geometry>
+      </visual>
+      <collision name='collision'>
+        <geometry>
+          <box>
+            <size>5 5 0.01</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    <static>1</static>
+    <allow_auto_disable>1</allow_auto_disable>
+  </model>
+</sdf>
