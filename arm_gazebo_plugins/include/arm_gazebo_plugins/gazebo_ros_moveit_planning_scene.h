@@ -21,33 +21,28 @@
  */
 #pragma once
 
-#include <atomic>
-#include <unordered_map>
-#include <string>
-
 #include <geometry_msgs/Pose.h>
+#include <moveit_msgs/GetPlanningScene.h>
+#include <moveit_msgs/ObjectColor.h>
+#include <moveit_msgs/PlanningScene.h>
 #include <ros/callback_queue.h>
-#include <ros/subscribe_options.h>
-
 #include <ros/ros.h>
-#include <boost/thread.hpp>
+#include <ros/subscribe_options.h>
+#include <std_msgs/ColorRGBA.h>
+#include <std_srvs/Empty.h>
 
+#include <atomic>
+#include <boost/thread.hpp>
 #include <gazebo/common/Events.hh>
 #include <gazebo/common/Plugin.hh>
 #include <gazebo/physics/physics.hh>
 #include <gazebo/transport/TransportTypes.hh>
+#include <string>
+#include <unordered_map>
 
-#include <moveit_msgs/GetPlanningScene.h>
-#include <moveit_msgs/ObjectColor.h>
-#include <moveit_msgs/PlanningScene.h>
-#include <std_msgs/ColorRGBA.h>
-#include <std_srvs/Empty.h>
-
-namespace gazebo
-{
-class GazeboRosMoveItPlanningScene : public ModelPlugin
-{
-public:
+namespace gazebo {
+class GazeboRosMoveItPlanningScene : public ModelPlugin {
+ public:
   virtual ~GazeboRosMoveItPlanningScene();
 
   void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);
@@ -83,7 +78,7 @@ public:
   std::mutex ros_mutex_;
 
   std::thread periodic_event_thread_;
-  double scale_primitives_factor_{ 1.0 };
+  double scale_primitives_factor_{1.0};
 };
 
 }  // namespace gazebo
