@@ -15,7 +15,7 @@ static std::string get_id(const physics::LinkPtr &link) { return link->GetModel(
 
 GZ_REGISTER_MODEL_PLUGIN(GazeboRosMoveItPlanningScene);
 
-constexpr auto NAME = "GazeboRosMoveItPlanningScene";
+constexpr auto LOGNAME = "GazeboRosMoveItPlanningScene";
 
 GazeboRosMoveItPlanningScene::~GazeboRosMoveItPlanningScene() {
   // Custom Callback Queue
@@ -72,7 +72,7 @@ void GazeboRosMoveItPlanningScene::Load(physics::ModelPtr _model, sdf::ElementPt
       auto const excluded_models_str = _sdf->GetElement("excludedModels")->Get<std::string>();
       boost::split(excluded_model_names_, excluded_models_str, boost::is_any_of(" ,\n"));
     }
-    ROS_DEBUG_STREAM_THROTTLE_NAMED(1, NAME, "Excluded models " << excluded_model_names_);
+    ROS_DEBUG_STREAM_THROTTLE_NAMED(1, LOGNAME, "Excluded models " << excluded_model_names_);
   }
 
   // Make sure the ROS node for Gazebo has already been initialized
@@ -93,7 +93,7 @@ void GazeboRosMoveItPlanningScene::Load(physics::ModelPtr _model, sdf::ElementPt
         excluded_model_names_.push_back(name);
       }
     }
-    ROS_DEBUG_STREAM_NAMED(NAME, "Updated excluded models " << excluded_model_names_);
+    ROS_DEBUG_STREAM_NAMED(LOGNAME, "Updated excluded models " << excluded_model_names_);
 
     // copies into the response
     res.all_model_names = excluded_model_names_;
@@ -162,7 +162,7 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage() {
     // Skip some models
     if (std::find(excluded_model_names_.cbegin(), excluded_model_names_.cend(), model_name) !=
         excluded_model_names_.cend()) {
-      ROS_DEBUG_STREAM_THROTTLE_NAMED(1, NAME, "Skipping model " << model_name);
+      ROS_DEBUG_STREAM_THROTTLE_NAMED(1, LOGNAME, "Skipping model " << model_name);
       continue;
     }
 
@@ -188,9 +188,9 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage() {
 
       // Create a new collision object representing this link if it's not in the map
       if (found_collision_object == collision_object_map_.end()) {
-        ROS_DEBUG_STREAM_NAMED(NAME, "Creating collision object for model "
-                                         << model_name << " model_name " << model_name_
-                                         << " n objects = " << collision_object_map_.size());
+        ROS_DEBUG_STREAM_NAMED(LOGNAME, "Creating collision object for model "
+                                            << model_name << " model_name " << model_name_
+                                            << " n objects = " << collision_object_map_.size());
 
         moveit_msgs::CollisionObject new_object;
         new_object.id = id;
@@ -198,10 +198,10 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage() {
         new_object.operation = moveit_msgs::CollisionObject::ADD;
 
         collision_object_map_[id] = new_object;
-        ROS_DEBUG_STREAM_NAMED(NAME, "Adding object: " << id);
+        ROS_DEBUG_STREAM_NAMED(LOGNAME, "Adding object: " << id);
       } else {
         collision_object_map_[id].operation = moveit_msgs::CollisionObject::MOVE;
-        ROS_DEBUG_STREAM_THROTTLE_NAMED(1, NAME, "Moving object: " << id);
+        ROS_DEBUG_STREAM_THROTTLE_NAMED(1, LOGNAME, "Moving object: " << id);
       }
 
       // Get a reference to the object from the map
@@ -218,16 +218,16 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage() {
         auto const world2collision = collision->WorldPose();
         auto const world2robot = model_->WorldPose();
         auto const robot2world = world2robot.Inverse();
-        auto const collision_pose_robot_frame = robot2world + world2collision;
+        auto const robot2collision = robot2world + world2collision;
         geometry_msgs::Pose collision_pose_msg;
         {
-          collision_pose_msg.position.x = collision_pose_robot_frame.Pos().X();
-          collision_pose_msg.position.y = collision_pose_robot_frame.Pos().Y();
-          collision_pose_msg.position.z = collision_pose_robot_frame.Pos().Z();
-          collision_pose_msg.orientation.x = collision_pose_robot_frame.Rot().X();
-          collision_pose_msg.orientation.y = collision_pose_robot_frame.Rot().Y();
-          collision_pose_msg.orientation.z = collision_pose_robot_frame.Rot().Z();
-          collision_pose_msg.orientation.w = collision_pose_robot_frame.Rot().W();
+          collision_pose_msg.position.x = robot2collision.Pos().X();
+          collision_pose_msg.position.y = robot2collision.Pos().Y();
+          collision_pose_msg.position.z = robot2collision.Pos().Z();
+          collision_pose_msg.orientation.x = robot2collision.Rot().X();
+          collision_pose_msg.orientation.y = robot2collision.Rot().Y();
+          collision_pose_msg.orientation.z = robot2collision.Rot().Z();
+          collision_pose_msg.orientation.w = robot2collision.Rot().W();
         }
 
         // Always add pose information
@@ -392,8 +392,8 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage() {
 
           object.primitives.push_back(primitive_msg);
         }
-        ROS_DEBUG_THROTTLE_NAMED(1, NAME, "model %s has %zu links", model_name.c_str(), links.size());
-        ROS_DEBUG_THROTTLE_NAMED(1, NAME, "model %s has %zu meshes, %zu mesh poses", model_name.c_str(),
+        ROS_DEBUG_THROTTLE_NAMED(1, LOGNAME, "model %s has %zu links", model_name.c_str(), links.size());
+        ROS_DEBUG_THROTTLE_NAMED(1, LOGNAME, "model %s has %zu meshes, %zu mesh poses", model_name.c_str(),
                                  object.meshes.size(), object.mesh_poses.size());
       }
     }
@@ -422,7 +422,7 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage() {
     if (object.operation == moveit_msgs::CollisionObject::REMOVE) {
       // Mark for removal from the map
       to_remove.push_back(name);
-      ROS_DEBUG_STREAM_NAMED(NAME, "Removing object: " << object.id);
+      ROS_DEBUG_STREAM_NAMED(LOGNAME, "Removing object: " << object.id);
     }
   }
 
