@@ -64,7 +64,7 @@ public:
   boost::scoped_ptr<ros::NodeHandle> rosnode_;
 
   ros::Publisher planning_scene_pub_;
-  ros::ServiceServer excluded_models_srv_;
+  [[maybe_unused]] ros::ServiceServer excluded_models_srv_;
 
   std::string topic_name_;
   std::string scene_name_;
