@@ -20,6 +20,12 @@
             <size>5 5 0.1</size>
           </box>
         </geometry>
+        <material>
+            <script>
+                <uri>model://my_ground_plane/concrete.material</uri>
+                <name>ConcreteTexture</name>
+            </script>
+        </material>
       </visual>
       <collision name='collision'>
         <geometry>
