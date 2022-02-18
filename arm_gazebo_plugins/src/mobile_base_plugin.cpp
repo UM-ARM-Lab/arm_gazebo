@@ -6,7 +6,7 @@
 #include <gazebo/common/common.hh>
 #include <gazebo/physics/physics.hh>
 
-constexpr auto const LOGGER = "val";
+constexpr auto const LOGGER = "mobile_base";
 
 const double KP = 50;
 
