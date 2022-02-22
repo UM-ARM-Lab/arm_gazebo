@@ -218,7 +218,7 @@ moveit_msgs::PlanningScene GazeboRosMoveItPlanningScene::BuildMessage() {
         auto const world2collision = collision->WorldPose();
         auto const world2robot = model_->WorldPose();
         auto const robot2world = world2robot.Inverse();
-        auto const robot2collision = robot2world + world2collision;
+        auto const robot2collision = world2collision + robot2world;
         geometry_msgs::Pose collision_pose_msg;
         {
           collision_pose_msg.position.x = robot2collision.Pos().X();

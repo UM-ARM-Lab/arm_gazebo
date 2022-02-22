@@ -1,6 +1,7 @@
 #include <arm_gazebo_msgs/ComputeOccupancy.h>
 #include <geometry_msgs/Point.h>
 #include <ros/callback_queue.h>
+#include <tf2_ros/transform_listener.h>
 #include <ros/ros.h>
 #include <ros/subscribe_options.h>
 #include <sdf_tools/SDF.h>
@@ -16,6 +17,7 @@
 #include <gazebo/physics/ode/ODERayShape.hh>
 #include <gazebo/physics/ode/ODESphereShape.hh>
 #include <gazebo/physics/ode/ODETypes.hh>
+#include <tf2_eigen/tf2_eigen.h>
 #include <gazebo/physics/physics.hh>
 #include <gazebo/transport/transport.hh>
 #include <ignition/math/Vector3.hh>
@@ -38,6 +40,9 @@ class CollisionMapPlugin : public WorldPlugin {
   physics::ODEPhysicsPtr ode_;
   physics::ModelPtr m_;
   physics::ODECollisionPtr ode_collision_;
+
+  tf2_ros::Buffer tf_buffer_;
+  tf2_ros::TransformListener tf_listener_{tf_buffer_};
 
   sdf_tools::CollisionMapGrid grid_;
 
@@ -63,7 +68,7 @@ class CollisionMapPlugin : public WorldPlugin {
   void SetRadius(physics::ModelPtr m);
 
   geometry_msgs::Point compute_occupancy_grid(int64_t h_rows, int64_t w_cols, int64_t c_channels,
-                                              geometry_msgs::Point center, float resolution,
+                                              std::string const& frame, geometry_msgs::Point center, float resolution,
                                               const std::vector<std::string>& excluded_models);
 };
 

@@ -57,7 +57,7 @@ void CollisionMapPlugin::Load(physics::WorldPtr world, sdf::ElementPtr sdf) {
   auto get_occupancy = [&](arm_gazebo_msgs::ComputeOccupancyRequest &req,
                            arm_gazebo_msgs::ComputeOccupancyResponse &res) {
     auto const &origin_point =
-        compute_occupancy_grid(req.h_rows, req.w_cols, req.c_channels, req.center, req.resolution, req.excluded_models);
+        compute_occupancy_grid(req.h_rows, req.w_cols, req.c_channels, req.frame_id, req.center, req.resolution, req.excluded_models);
 
     auto const grid_float = [&]() {
       auto const &data = grid_.GetImmutableRawData();
@@ -148,7 +148,8 @@ void CollisionMapPlugin::SetRadius(physics::ModelPtr m) {
 }
 
 geometry_msgs::Point CollisionMapPlugin::compute_occupancy_grid(int64_t h_rows, int64_t w_cols, int64_t c_channels,
-                                                                geometry_msgs::Point center, float resolution,
+                                                                std::string const &frame, geometry_msgs::Point center,
+                                                                float resolution,
                                                                 std::vector<std::string> const &excluded_models) {
   auto const x_width = resolution * w_cols;
   auto const y_height = resolution * h_rows;
@@ -157,7 +158,7 @@ geometry_msgs::Point CollisionMapPlugin::compute_occupancy_grid(int64_t h_rows, 
   origin_transform.translation() =
       Eigen::Vector3d{center.x - x_width / 2.f, center.y - y_height / 2.f, center.z - z_size / 2.f};
 
-  grid_ = sdf_tools::CollisionMapGrid(origin_transform, frame_id_, resolution, w_cols, h_rows, c_channels, oob_value);
+  grid_ = sdf_tools::CollisionMapGrid(origin_transform, frame, resolution, w_cols, h_rows, c_channels, oob_value);
   ROS_DEBUG_STREAM_NAMED(PLUGIN_NAME, "origin " << origin_transform.translation() << " shape [" << h_rows << ","
                                                 << w_cols << "," << c_channels << "]");
 
@@ -186,7 +187,15 @@ geometry_msgs::Point CollisionMapPlugin::compute_occupancy_grid(int64_t h_rows, 
   marker.scale.z = radius_ * 2;
   marker.pose.orientation.w = 1;
   marker.header.stamp = ros::Time::now();
-  marker.header.frame_id = frame_id_;
+  marker.header.frame_id = frame;
+
+  Eigen::Isometry3d transform_eigen{Eigen::Isometry3d::Identity()};
+  try {
+    auto const transformStamped = tf_buffer_.lookupTransform("world", frame, ros::Time(0));
+    transform_eigen = tf2::transformToEigen(transformStamped);
+  } catch (tf2::TransformException &ex) {
+    ROS_ERROR_NAMED(PLUGIN_NAME, "Failed to lookup transform, result will be invalid!");
+  }
 
   // lock physics engine while creating/testing collision. not sure this is necessary.
   {
@@ -195,7 +204,9 @@ geometry_msgs::Point CollisionMapPlugin::compute_occupancy_grid(int64_t h_rows, 
       for (auto y_idx{0l}; y_idx < grid_.GetNumYCells(); ++y_idx) {
         for (auto z_idx{0l}; z_idx < grid_.GetNumZCells(); ++z_idx) {
           auto const grid_location = grid_.GridIndexToLocation(x_idx, y_idx, z_idx);
-          m_->SetWorldPose({grid_location[0], grid_location[1], grid_location[2], 0, 0, 0});
+          Eigen::Vector3d point{grid_location[0], grid_location[1], grid_location[2]};
+          Eigen::Vector3d const point_world_frame = transform_eigen * point;
+          m_->SetWorldPose({point_world_frame.x(), point_world_frame.y(), point_world_frame.z(), 0, 0, 0});
           MyIntersection intersection;
           auto const collision_space = (dGeomID)(ode_->GetSpaceId());
           dSpaceCollide2(sphere_collision_geom_id, collision_space, &intersection, &nearCallback);
