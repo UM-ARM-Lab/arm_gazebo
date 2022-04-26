@@ -1,4 +1,5 @@
 #include <arm_gazebo_msgs/GetJointStates.h>
+#include <arm_gazebo_msgs/GetWorldInitialSDF.h>
 #include <arm_gazebo_msgs/SetJointStates.h>
 #include <arm_gazebo_msgs/SetLinkStates.h>
 #include <arm_gazebo_msgs/SetModelStates.h>
@@ -50,6 +51,8 @@ class ArmGazeboRosPlugin : public WorldPlugin {
 
     world_ = parent;
 
+    world_initial_sdf_string_ = world_->SDF()->ToString("");
+
     nh_ = std::make_unique<ros::NodeHandle>("arm_gazebo");
 
     async_spinner_ = std::make_unique<ros::AsyncSpinner>(0);  // will use a thread for each CPU core
@@ -88,6 +91,8 @@ class ArmGazeboRosPlugin : public WorldPlugin {
     set_joint_states_sv_ = nh_->advertiseService("set_joint_states", &ArmGazeboRosPlugin::SetJointStates, this);
     set_link_states_sv_ = nh_->advertiseService("set_link_states", &ArmGazeboRosPlugin::SetLinkStates, this);
     step_service_ = nh_->advertiseService("world_control", &ArmGazeboRosPlugin::OnWorldControl, this);
+    world_initial_sdf_service_ =
+        nh_->advertiseService("world_initial_sdf", &ArmGazeboRosPlugin::OnWorldInitialSDF, this);
   }
 
   bool SetLinkStates(arm_gazebo_msgs::SetLinkStates::Request &req,  // NOLINT(readability-make-member-function-const)
@@ -267,6 +272,12 @@ class ArmGazeboRosPlugin : public WorldPlugin {
     return true;
   }
 
+  bool OnWorldInitialSDF(arm_gazebo_msgs::GetWorldInitialSDFRequest &req,
+                         arm_gazebo_msgs::GetWorldInitialSDFResponse &res) {
+    res.world_initial_sdf = world_initial_sdf_string_;
+    return true;
+  }
+
   bool plugin_loaded_ = false;
 
   std::unique_ptr<ros::NodeHandle> nh_;
@@ -279,12 +290,14 @@ class ArmGazeboRosPlugin : public WorldPlugin {
   [[maybe_unused]] ros::ServiceServer set_joint_states_sv_;
   [[maybe_unused]] ros::ServiceServer set_link_states_sv_;
   [[maybe_unused]] ros::ServiceServer step_service_;
+  [[maybe_unused]] ros::ServiceServer world_initial_sdf_service_;
   ros::Publisher pub_joint_states_;
 
   std::unique_ptr<ros::AsyncSpinner> async_spinner_;
 
   transport::PublisherPtr world_control_pub_;
 
+  std::string world_initial_sdf_string_;
   std::atomic<int> step_count_{0};
   double seconds_per_step_{0.0};
 };

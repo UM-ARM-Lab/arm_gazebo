@@ -17,6 +17,7 @@ add_service_files(
         ComputeOccupancy.srv
         ExcludeModels.srv
         GetJointStates.srv
+        GetWorldInitialSDF.srv
         SetJointStates.srv
         SetLinkStates.srv
         SetModelStates.srv
