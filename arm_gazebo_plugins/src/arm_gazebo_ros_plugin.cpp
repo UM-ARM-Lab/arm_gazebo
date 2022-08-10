@@ -238,6 +238,9 @@ class ArmGazeboRosPlugin : public WorldPlugin {
     arm_gazebo_msgs::JointStates joint_states_msg;
     for (auto const &model : world_->Models()) {
       for (auto const &joint : model->GetJoints()) {
+        if (joint->DOF() == 0) {
+          continue;
+        }
         arm_gazebo_msgs::JointState joint_state_msg;
         joint_state_msg.joint_name = joint->GetName();
         joint_state_msg.model_name = model->GetName();
