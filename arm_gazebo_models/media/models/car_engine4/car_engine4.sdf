@@ -3,7 +3,7 @@
         <allow_auto_disable>true</allow_auto_disable>
         <link name="body">
             <kinematic>true</kinematic>
-            <pose>-0.03 -0.20 0.14 0 0 0 0</pose>
+            <pose>-0.03 -0.20 0.14 0 0 0</pose>
             <visual name="visual">
                 <geometry>
                     <box>
@@ -25,7 +25,7 @@
         </link>
         <link name="lift_tab1">
             <kinematic>true</kinematic>
-            <pose>0.12 -0.07 0.18 0 0 0 0</pose>
+            <pose>0.12 -0.07 0.18 0 0 0</pose>
             <visual name="visual">
                 <geometry>
                     <box>
@@ -47,7 +47,7 @@
         </link>
         <link name="lift_tab2">
             <kinematic>true</kinematic>
-            <pose>0.12 -0.32 0.18 0 0 0 0</pose>
+            <pose>0.12 -0.32 0.18 0 0 0</pose>
             <visual name="visual">
                 <geometry>
                     <box>
@@ -69,7 +69,7 @@
         </link>
         <link name="lift_tab3">
             <kinematic>true</kinematic>
-            <pose>-0.245 -0.07 0.18 0 0 0 0</pose>
+            <pose>-0.245 -0.07 0.18 0 0 0</pose>
             <visual name="visual">
                 <geometry>
                     <box>
@@ -91,7 +91,7 @@
         </link>
         <link name="lift_tab4">
             <kinematic>true</kinematic>
-            <pose>-0.245 -0.36 0.16 0 0 0 0</pose>
+            <pose>-0.245 -0.36 0.16 0 0 0</pose>
             <visual name="visual">
                 <geometry>
                     <box>
@@ -113,7 +113,7 @@
         </link>
         <link name="top">
             <kinematic>true</kinematic>
-            <pose>-0.02 -0.29 0.32 0 0 0 0</pose>
+            <pose>-0.02 -0.29 0.32 0 0 0</pose>
             <visual name="visual">
                 <geometry>
                     <box>
@@ -135,7 +135,7 @@
         </link>
         <link name="pallet">
             <kinematic>true</kinematic>
-            <pose>0 -0.07 -0.08 0 0 0 0</pose>
+            <pose>0 -0.07 -0.08 0 0 0</pose>
             <visual name="visual">
                 <geometry>
                     <box>
