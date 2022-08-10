@@ -244,7 +244,7 @@ class ArmGazeboRosPlugin : public WorldPlugin {
         arm_gazebo_msgs::JointState joint_state_msg;
         joint_state_msg.joint_name = joint->GetName();
         joint_state_msg.model_name = model->GetName();
-        for (auto axis = 0u; axis <= joint->DOF(); ++axis) {
+        for (auto axis = 0u; axis < joint->DOF(); ++axis) {
           arm_gazebo_msgs::JointAxisState joint_axis_state;
           joint_axis_state.axis = axis;
           joint_axis_state.position = joint->Position(axis);
