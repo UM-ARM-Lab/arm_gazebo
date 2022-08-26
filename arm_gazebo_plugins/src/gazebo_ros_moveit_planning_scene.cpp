@@ -45,12 +45,6 @@ void GazeboRosMoveItPlanningScene::Load(physics::ModelPtr _model, sdf::ElementPt
       this->robot_name_ = _sdf->GetElement("robotName")->Get<std::string>();
     }
 
-    if (!_sdf->HasElement("topicName")) {
-      this->topic_name_ = "planning_scene";
-    } else {
-      this->topic_name_ = _sdf->GetElement("topicName")->Get<std::string>();
-    }
-
     if (!_sdf->HasElement("sceneName")) {
       this->scene_name_ = "";
     } else {

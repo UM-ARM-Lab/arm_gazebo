@@ -1,0 +1,447 @@
+<sdf version="1.6">
+    <model name="car_scene5_real">
+        <allow_auto_disable>true</allow_auto_disable>
+        <link name="body">
+            <kinematic>true</kinematic>
+            <pose>-0.03 -0.20 0.14 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.34 0.37 0.30</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.4 0.4 0.4 1.0</ambient>
+                    <diffuse>0.4 0.4 0.4 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.34 0.37 0.30</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="lift_tab1">
+            <kinematic>true</kinematic>
+            <pose>0.12 -0.07 0.18 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.09 0.04</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.5 0.5 0.5 1.0</ambient>
+                    <diffuse>0.5 0.5 0.5 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.09 0.04</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="lift_tab2">
+            <kinematic>true</kinematic>
+            <pose>0.12 -0.32 0.18 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.09 0.04</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.5 0.5 0.5 1.0</ambient>
+                    <diffuse>0.5 0.5 0.5 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.09 0.04</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="lift_tab3">
+            <kinematic>true</kinematic>
+            <pose>-0.245 -0.07 0.18 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 0.07</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.5 0.5 0.5 1.0</ambient>
+                    <diffuse>0.5 0.5 0.5 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 0.07</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="lift_tab4">
+            <kinematic>true</kinematic>
+            <pose>-0.245 -0.36 0.16 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.09 0.035</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.5 0.5 0.5 1.0</ambient>
+                    <diffuse>0.5 0.5 0.5 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.09 0.035</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="top">
+            <kinematic>true</kinematic>
+            <pose>-0.02 -0.29 0.32 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.24 0.28 0.13</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.5 0.5 0.5 1.0</ambient>
+                    <diffuse>0.5 0.5 0.5 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.24 0.28 0.13</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="top_hook1">
+            <kinematic>true</kinematic>
+            <pose>0.08 -0.17 0.40 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.04 0.04 0.04</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.5 0.5 1.0</ambient>
+                    <diffuse>0.2 0.5 0.5 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.04 0.04 0.04</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="top_hook2">
+            <kinematic>true</kinematic>
+            <pose>-0.12 -0.17 0.40 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.04 0.04 0.04</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.5 0.5 1.0</ambient>
+                    <diffuse>0.2 0.5 0.5 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.04 0.04 0.04</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="top_hook3">
+            <kinematic>true</kinematic>
+            <pose>-0.12 -0.41 0.40 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.04 0.04 0.04</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.5 0.5 1.0</ambient>
+                    <diffuse>0.2 0.5 0.5 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.04 0.04 0.04</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="pallet">
+            <kinematic>true</kinematic>
+            <pose>0 -0.07 -0.08 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>1.50 1.2 0.21</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.6 0.5 0.2 1.0</ambient>
+                    <diffuse>0.6 0.5 0.2 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>1.50 1.2 0.21</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="hood">
+            <kinematic>true</kinematic>
+            <pose>0 0.25 0.5 0.55 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>1.50 0.2 1.1</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.5 0.5 0.5 1.0</ambient>
+                    <diffuse>0.5 0.5 0.5 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>1.50 0.2 1.1</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="cylinder">
+            <kinematic>true</kinematic>
+            <pose>-0.53 -0.22 0.15 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <cylinder>
+                        <radius>0.105</radius>
+                        <length>0.27</length>
+                    </cylinder>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1.0</ambient>
+                    <diffuse>0.2 0.2 0.2 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <cylinder>
+                        <radius>0.105</radius>
+                        <length>0.27</length>
+                    </cylinder>
+                </geometry>
+            </collision>
+        </link>
+        <link name="box1">
+            <kinematic>true</kinematic>
+            <pose>-0.13 0.08 0.12 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.2 0.23 0.15</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.5 0.5 0.5 1.0</ambient>
+                    <diffuse>0.5 0.5 0.5 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.2 0.23 0.15</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="box2">
+            <kinematic>true</kinematic>
+            <pose>0.1 0.18 0.2 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.3 0.35 0.32</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.3 0.3 0.3 1.0</ambient>
+                    <diffuse>0.3 0.3 0.3 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.3 0.35 0.32</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="box3">
+            <kinematic>true</kinematic>
+            <pose>0.37 -0.05 0.07 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.26 0.52 0.14</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.2 1.0</ambient>
+                    <diffuse>0.2 0.2 0.2 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.26 0.52 0.14</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="bumper1">
+            <kinematic>true</kinematic>
+            <pose>-0.1 -0.60 -0.04 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.4 0.12 0.4</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.9 1.0</ambient>
+                    <diffuse>0.2 0.2 0.9 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.4 0.12 0.4</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="bumper2">
+            <kinematic>true</kinematic>
+            <pose>-0.41 -0.56 -0.04 0 0 -0.2</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.4 0.12 0.4</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.9 1.0</ambient>
+                    <diffuse>0.2 0.2 0.9 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.4 0.12 0.4</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="bumper3">
+            <kinematic>true</kinematic>
+            <pose>-0.7 -0.46 -0.04 0 0 -0.5</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.4 0.12 0.4</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.9 1.0</ambient>
+                    <diffuse>0.2 0.2 0.9 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.4 0.12 0.4</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="bumper4">
+            <kinematic>true</kinematic>
+            <pose>0.21 -0.56 -0.04 0 0 0.2</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.4 0.12 0.4</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.9 1.0</ambient>
+                    <diffuse>0.2 0.2 0.9 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.4 0.12 0.4</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+        <link name="bumper5">
+            <kinematic>true</kinematic>
+            <pose>0.5 -0.46 -0.04 0 0 0.5</pose>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.4 0.12 0.4</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.2 0.2 0.9 1.0</ambient>
+                    <diffuse>0.2 0.2 0.9 1.0</diffuse>
+                </material>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.4 0.12 0.4</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+    </model>
+</sdf>

@@ -21,7 +21,7 @@
       <visual name='visual'>
         <geometry>
           <box>
-            <size>3.10724 0.140567 0.01</size>
+            <size>3.10724 0.140567 2</size>
           </box>
         </geometry>
         <material>
@@ -32,7 +32,6 @@
           <shader type='pixel'/>
         </material>
         <pose>0 0 0 0 -0 0</pose>
-        <transparency>1</transparency>
         <cast_shadows>0</cast_shadows>
       </visual>
       <collision name='collision'>
@@ -41,7 +40,7 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <box>
-            <size>3.10724 0.140567 1.89855</size>
+            <size>3.10724 0.140567 2</size>
           </box>
         </geometry>
         <surface>

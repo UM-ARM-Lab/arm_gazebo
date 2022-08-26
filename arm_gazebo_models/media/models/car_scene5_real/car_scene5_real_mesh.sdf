@@ -1,0 +1,23 @@
+<sdf version="1.6">
+    <model name="car_scene5_real">
+        <allow_auto_disable>true</allow_auto_disable>
+        <link name="car_scene5_real">
+            <kinematic>true</kinematic>
+            <pose>-0.03 -0.20 0.14 0 0 0</pose>
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://car_scene5_real/meshes/car_scene5_real.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+            <collision name="collision">
+                <geometry>
+                    <mesh>
+                        <uri>model://car_scene5_real/meshes/car_scene5_real.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+        </link>
+    </model>
+</sdf>
