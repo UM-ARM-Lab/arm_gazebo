@@ -7,7 +7,7 @@
             <visual name="visual">
                 <geometry>
                     <box>
-                        <size>0.34 0.37 0.30</size>
+                        <size>0.36 0.39 0.32</size>
                     </box>
                 </geometry>
                 <material>
@@ -18,7 +18,7 @@
             <collision name="collision">
                 <geometry>
                     <box>
-                        <size>0.34 0.37 0.30</size>
+                        <size>0.36 0.39 0.32</size>
                     </box>
                 </geometry>
             </collision>
@@ -95,7 +95,7 @@
             <visual name="visual">
                 <geometry>
                     <box>
-                        <size>0.1 0.09 0.035</size>
+                        <size>0.12 0.11 0.055</size>
                     </box>
                 </geometry>
                 <material>
@@ -106,7 +106,7 @@
             <collision name="collision">
                 <geometry>
                     <box>
-                        <size>0.1 0.09 0.035</size>
+                        <size>0.12 0.11 0.055</size>
                     </box>
                 </geometry>
             </collision>
@@ -117,7 +117,7 @@
             <visual name="visual">
                 <geometry>
                     <box>
-                        <size>0.24 0.28 0.13</size>
+                        <size>0.25 0.29 0.14</size>
                     </box>
                 </geometry>
                 <material>
@@ -128,7 +128,7 @@
             <collision name="collision">
                 <geometry>
                     <box>
-                        <size>0.24 0.28 0.13</size>
+                        <size>0.25 0.29 0.14</size>
                     </box>
                 </geometry>
             </collision>
@@ -245,11 +245,11 @@
         </link>
         <link name="cylinder">
             <kinematic>true</kinematic>
-            <pose>-0.5 -0.22 0.15 0 0 0</pose>
+            <pose>-0.47 -0.22 0.15 0 0 0</pose>
             <visual name="visual">
                 <geometry>
                     <cylinder>
-                        <radius>0.105</radius>
+                        <radius>0.14</radius>
                         <length>0.27</length>
                     </cylinder>
                 </geometry>
@@ -261,7 +261,7 @@
             <collision name="collision">
                 <geometry>
                     <cylinder>
-                        <radius>0.105</radius>
+                        <radius>0.14</radius>
                         <length>0.27</length>
                     </cylinder>
                 </geometry>
@@ -335,11 +335,11 @@
         </link>
         <link name="bumper1">
             <kinematic>true</kinematic>
-            <pose>-0.1 -0.60 -0.04 0 0 0</pose>
+            <pose>-0.1 -0.55 -0.03 0 0 0</pose>
             <visual name="visual">
                 <geometry>
                     <box>
-                        <size>0.4 0.12 0.4</size>
+                        <size>0.44 0.14 0.44</size>
                     </box>
                 </geometry>
                 <material>
@@ -350,18 +350,18 @@
             <collision name="collision">
                 <geometry>
                     <box>
-                        <size>0.4 0.12 0.4</size>
+                        <size>0.44 0.14 0.44</size>
                     </box>
                 </geometry>
             </collision>
         </link>
         <link name="bumper2">
             <kinematic>true</kinematic>
-            <pose>-0.41 -0.56 -0.04 0 0 -0.2</pose>
+            <pose>-0.41 -0.51 -0.03 0 0 -0.2</pose>
             <visual name="visual">
                 <geometry>
                     <box>
-                        <size>0.4 0.12 0.4</size>
+                        <size>0.44 0.14 0.44</size>
                     </box>
                 </geometry>
                 <material>
@@ -372,14 +372,14 @@
             <collision name="collision">
                 <geometry>
                     <box>
-                        <size>0.4 0.12 0.4</size>
+                        <size>0.44 0.14 0.44</size>
                     </box>
                 </geometry>
             </collision>
         </link>
         <link name="bumper3">
             <kinematic>true</kinematic>
-            <pose>-0.7 -0.46 -0.04 0 0 -0.5</pose>
+            <pose>-0.7 -0.41 -0.03 0 0 -0.5</pose>
             <visual name="visual">
                 <geometry>
                     <box>
@@ -401,7 +401,7 @@
         </link>
         <link name="bumper4">
             <kinematic>true</kinematic>
-            <pose>0.21 -0.56 -0.04 0 0 0.2</pose>
+            <pose>0.21 -0.51 -0.03 0 0 0.2</pose>
             <visual name="visual">
                 <geometry>
                     <box>
@@ -423,7 +423,7 @@
         </link>
         <link name="bumper5">
             <kinematic>true</kinematic>
-            <pose>0.5 -0.46 -0.04 0 0 0.5</pose>
+            <pose>0.5 -0.41 -0.03 0 0 0.5</pose>
             <visual name="visual">
                 <geometry>
                     <box>
